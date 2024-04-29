@@ -3,5 +3,5 @@
 
 参考：GameFrameWork框架
 
-笔者的一点拙见：对于程序来说，游戏的核心是什么？游戏的流程。游戏框架既是保证和优化游戏流程的程序员工具。常见的游戏引擎中，通过将游戏的流程通过关卡Scene表示，而关卡具备的性质是由System决定，具些例子吧，当一个Scene拥有UISystem，便拥有的创建UI的Power，拥有DataSystem系统，
+笔者的一点拙见：对于程序来说，游戏的核心是什么？游戏的流程。游戏框架既是保证和优化游戏流程的程序员工具。常见的游戏引擎中，游戏的流程通过关卡Scene表示，而Scene具备的性质是由System决定，具些例子吧，当一个Scene拥有UISystem，便拥有的创建UI的Power，拥有DataSystem系统，
 便具备读取和存储数据Power，拥有CombatSystem便证明当前场景是战斗场景。而Manager是对System层做更细的分化，游戏中，UISystem会存在BagManager,CombatUIMangaer等各式的管理器，System负责管理它们的工作和生命周期。最后是Entity层（对象层）,类似UE的Actor，Pawn，Character进行分层。通过Component控制Entity行为。
