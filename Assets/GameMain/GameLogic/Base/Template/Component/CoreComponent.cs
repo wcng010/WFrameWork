@@ -1,4 +1,5 @@
 ﻿using System;
+using GameScript.GameMain.Component;
 using Mirror;
 using UnityEngine;
 using NotImplementedException = System.NotImplementedException;
