@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbd33b57d3f88d49ad7697ed4464b67, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  levelIndex: 2
-  loadSystemNames:
-  - EventSystem
-  - ResourceSystem
-  - DataSystem
-  - InputSystem
-  - AudioSystem
-  - SceneSystem
-  - UISystem
-  - CameraSystem
-  - TurnBasedSystem
+  levelIndex: 1
+  loadSystemTypes:
+  - {fileID: 11500000, guid: 85b74b9596647294c9474d6c843fe300, type: 3}
+  - {fileID: 11500000, guid: 92e23a2b3ae3a464a832c429c655b286, type: 3}
+  - {fileID: 11500000, guid: 5e00705dadce470487139c04f7a94219, type: 3}

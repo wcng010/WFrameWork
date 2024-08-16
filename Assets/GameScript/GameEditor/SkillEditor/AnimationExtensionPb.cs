@@ -12,6 +12,11 @@ namespace Wcng.SkillEditor
         public AnimancerComponent animancer => _animancer? _animancer: _animancer = GameObject.FindWithTag("Player").GetComponentInChildren<AnimancerComponent>();
         private AnimancerComponent _animancer;
         public ClipTransition animancerClip;
+        private float _ActionFadeDuration = AnimancerPlayable.DefaultFadeDuration;
+        private AvatarMask ActionMask;
+        private AnimancerLayer BaseLayer => _animancer.Layers[0];
+        private bool _canPlayActionFullBody;
+        private bool _isPlay;
         private float _time;
         public override void PrepareFrame(Playable playable, FrameData info)
         {
@@ -29,7 +34,7 @@ namespace Wcng.SkillEditor
         {
             if (animancer.States.Current==null||animancer.States.Current.Clip != animancerClip.Clip)
             {
-                animancer.Play(animancerClip);
+                BaseLayer.Play(animancerClip);
             }
         }
         
@@ -37,6 +42,5 @@ namespace Wcng.SkillEditor
         {
             AnimancerUtilities.EditModeSampleAnimation(animancerClip.Clip, animancer, _time * animancerClip.Clip.length);
         }
-
     }
 }

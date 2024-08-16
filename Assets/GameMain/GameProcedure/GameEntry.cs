@@ -7,28 +7,11 @@ using UnityEngine.SceneManagement;
 
 namespace Wcng
 {
-    public enum SystemType
-    {
-        DataSystem,
-        LogSystem,
-        EventSystem,
-        InputSystem,
-        AudioSystem,
-        UISystem,
-        TurnBasedSystem,
-        ResourceSystem,
-        SceneSystem,
-        WebSystem,
-        CameraSystem,
-        ShopSystem,
-    }
-
     public enum GameState
     {
         Online,
         Offline,
     }
-
     public class GameEntry :NormSingleton<GameEntry>
     {
         [Title("RunType")][PropertyOrder(-2)]
@@ -58,8 +41,9 @@ namespace Wcng
         }
 
         //加载系统，系统加载manager，manager进而加载负责的类
-        public void OnLoadSystem()
+        private void OnLoadSystem()
         {
+            /*
             for (int i = 0; i < loadSystemSetting.Count; i++)
             {
                 if (loadSystemSetting[i].levelIndex == SceneManager.GetActiveScene().buildIndex)
@@ -186,6 +170,43 @@ namespace Wcng
                     for (int k = 0; k < newLoadSystem.Count; k++)
                     {
                         SystemManager.SystemList.Add(newLoadSystem[k]);
+                    }
+                }
+            }*/
+            
+            for (int i = 0; i < loadSystemSetting.Count; i++)
+            {
+                if (loadSystemSetting[i].levelIndex == SceneManager.GetActiveScene().buildIndex)
+                {
+                    for (int j = 0; j < loadSystemSetting[i].loadSystemTypes.Count; ++j)
+                    {
+                        //类传入错误
+                        if (loadSystemSetting[i].loadSystemTypes[j].GetClass().BaseType != typeof(System))
+                        {
+                            Debug.Log("yhyh: Error Component Params: " + loadSystemSetting[i].loadSystemTypes[j].GetClass());
+                            return;
+                        }
+                        //需添加
+                        else if(!SystemManager.SystemList.Exists((system) => system.GetType() == loadSystemSetting[i].loadSystemTypes[j].GetClass()))
+                        {
+                            GameObject systemObj = new GameObject();
+                            systemObj.name = loadSystemSetting[i].loadSystemTypes[j].name;
+                            systemObj.transform.SetParent(systemGroup);
+                            SystemManager.SystemList.Add(systemObj.AddComponent(loadSystemSetting[i].loadSystemTypes[j].GetClass()) as System);
+                            Debug.Log("yhyh: Add Component: " + systemObj.name);
+                        }
+                    }
+                    //卸载无需加载的System
+                    for (int k = SystemManager.SystemList.Count-1; k >= 0; --k)
+                    {
+                        //存在原本有，后续没有，需删除
+                        if (!loadSystemSetting[i].loadSystemTypes.Exists(type =>
+                                type.GetClass() == SystemManager.SystemList[k].GetType()))
+                        {
+                            Debug.Log("yhyh: Remove Component: " + SystemManager.SystemList[k].gameObject.name);
+                            Destroy(SystemManager.SystemList[k].gameObject);
+                            SystemManager.SystemList.RemoveAt(k);
+                        }
                     }
                 }
             }

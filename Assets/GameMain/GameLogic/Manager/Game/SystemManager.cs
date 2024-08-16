@@ -11,17 +11,17 @@ namespace Wcng
     public static class SystemManager 
     {
         public static readonly List<System> SystemList = new List<System>();
-        public static DataSystem DataSystem { get; set; }
-        public static LogSystem LogSystem { get; set; }
-        public static EventSystem EventSystem { get; set; }
-        public static InputSystem InputSystem { get; set; }
-        public static AudioSystem AudioSystem { get; set; }
-        public static UISystem UISystem { get; set; }
-        public static ResourceSystem ResourceSystem { get; set; }
-        public static SceneSystem SceneSystem { get; set; }
-        public static WebSystem WebSystem { get; set; }
-        public static CameraSystem CameraSystem { get; set; }
-        public static ShopSystem ShopSystem { get; set; }
+        public static DataSystem DataSystem => GetSystem<DataSystem>();
+        public static LogSystem LogSystem => GetSystem<LogSystem>();
+        public static EventSystem EventSystem => GetSystem<EventSystem>();
+        public static InputSystem InputSystem => GetSystem<InputSystem>();
+        public static AudioSystem AudioSystem => GetSystem<AudioSystem>();
+        public static UISystem UISystem => GetSystem<UISystem>();
+        public static ResourceSystem ResourceSystem => GetSystem<ResourceSystem>();
+        public static SceneSystem SceneSystem => GetSystem<SceneSystem>();
+        public static WebSystem WebSystem => GetSystem<WebSystem>();
+        public static CameraSystem CameraSystem => GetSystem<CameraSystem>();
+        public static ShopSystem ShopSystem => GetSystem<ShopSystem>();
 
         public static T GetSystem<T>() where T : System
         {

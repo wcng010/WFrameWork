@@ -1,8 +1,8 @@
-using UnityEngine;
-
+using Sirenix.OdinInspector;
 namespace Wcng
 {
-    public abstract class System : MonoBehaviour
+    
+    public abstract class System : SerializedMonoBehaviour
     {
         public virtual System SystemInit()
         {

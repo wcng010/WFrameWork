@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainMenu
   m_EditorClassIdentifier: 
   levelIndex: 0
-  loadSystemNames:
-  - DataSystem
-  - EventSystem
-  - CameraSystem
+  loadSystemTypes:
+  - {fileID: 11500000, guid: 5e00705dadce470487139c04f7a94219, type: 3}
+  - {fileID: 11500000, guid: 92e23a2b3ae3a464a832c429c655b286, type: 3}
+  - {fileID: 11500000, guid: fb9adb0fd5585bf42882b3578349bb6a, type: 3}
