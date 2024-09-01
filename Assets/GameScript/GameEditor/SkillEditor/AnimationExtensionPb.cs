@@ -9,11 +9,10 @@ namespace Wcng.SkillEditor
 {
     public class AnimationExtensionPb : PlayableBehaviour
     {
-        public AnimancerComponent animancer => _animancer? _animancer: _animancer = GameObject.FindWithTag("Player").GetComponentInChildren<AnimancerComponent>();
+        public AnimancerComponent Animancer => _animancer? _animancer: _animancer = GameObject.FindWithTag("Player").GetComponentInChildren<AnimancerComponent>();
         private AnimancerComponent _animancer;
-        public ClipTransition animancerClip;
-        private float _ActionFadeDuration = AnimancerPlayable.DefaultFadeDuration;
-        private AvatarMask ActionMask;
+        public ClipTransition AnimancerClip;
+        private AvatarMask _actionMask;
         private AnimancerLayer BaseLayer => _animancer.Layers[0];
         private bool _canPlayActionFullBody;
         private bool _isPlay;
@@ -23,24 +22,25 @@ namespace Wcng.SkillEditor
             if (Application.isEditor)
             {
                 base.PrepareFrame(playable, info);
-                animancer.States.Current.Speed = 0;
+                Animancer.States.Current.Speed = 0;
                 _time = (float)playable.GetTime();
-                animancer.States.Current.Time = _time;
+                Animancer.States.Current.Time = _time;
                 OnValidate();
             }
         }
         
+        
         public override void OnBehaviourPlay(Playable playable, FrameData info)
         {
-            if (animancer.States.Current==null||animancer.States.Current.Clip != animancerClip.Clip)
+            if (Animancer.States.Current==null||Animancer.States.Current.Clip != AnimancerClip.Clip)
             {
-                BaseLayer.Play(animancerClip);
+                BaseLayer.Play(AnimancerClip);
             }
         }
         
         private void OnValidate()
         {
-            AnimancerUtilities.EditModeSampleAnimation(animancerClip.Clip, animancer, _time * animancerClip.Clip.length);
+            AnimancerUtilities.EditModeSampleAnimation(AnimancerClip.Clip, Animancer, _time * AnimancerClip.Clip.length);
         }
     }
 }

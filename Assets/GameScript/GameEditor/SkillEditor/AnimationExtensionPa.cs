@@ -13,7 +13,7 @@ namespace Wcng.SkillEditor
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
             AnimationExtensionPb pb = new AnimationExtensionPb();
-            pb.animancerClip = animancerClip;
+            pb.AnimancerClip = animancerClip;
             return ScriptPlayable<AnimationExtensionPb>.Create(graph, pb);
         }
 

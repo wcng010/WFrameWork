@@ -14,12 +14,14 @@ namespace Wcng.SkillEditor
         private static StateLoaderSo Setting => _setting? _setting : _setting =  AssetDatabase.LoadAssetAtPath<StateLoaderSo>("Assets/Skill/Data/StateLoader.asset");
         private static StateLoaderSo _setting;
         
-        
+        //自行生成C#脚本
         [MenuItem("Tools/SkillTimeline/OpenSkillTimeLine")]
         private static void OpenSkillTimeline()
         {
             var timelineEditor = TimelineEditor.GetOrCreateWindow();
             timelineEditor.Show();
+            var timelineAsset = AssetDatabase.LoadAssetAtPath<TimelineAsset>("Assets/Skill/Timeline/" + Setting.states[0].name + ".playable");
+            timelineEditor.SetTimeline(timelineAsset);
         }
         
         [MenuItem("Tools/SkillTimeline/LoadSkillTimeLine")]

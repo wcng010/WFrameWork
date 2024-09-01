@@ -17,7 +17,6 @@ namespace Wcng.SkillEditor
                 ScriptPlayable<AnimationExtensionPb> tempPlayable = (ScriptPlayable<AnimationExtensionPb>)tempPlay;
                 var mixBehaviour = tempPlayable.GetBehaviour();
                 float weight = playable.GetInputWeight(0); 
-                Debug.Log(weight);
                 //animancer.States.Current.Weight = weight;
             }
         }
